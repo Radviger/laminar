@@ -192,4 +192,9 @@ impl Socket {
             .socket_mut()
             .set_link_conditioner(link_conditioner);
     }
+
+    /// Returns a number of active connections.
+    pub fn connections_count(&self) -> usize {
+        self.handler.connections_count()
+    }
 }
