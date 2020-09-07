@@ -16,6 +16,9 @@ use crate::{
     packet::Packet,
 };
 
+pub type EventReceiver = Receiver<SocketEvent>;
+pub type PacketSender = Sender<Packet>;
+
 // Wraps `LinkConditioner` and `UdpSocket` together. LinkConditioner is enabled when building with a "tester" feature.
 #[derive(Debug)]
 struct SocketWithConditioner {
@@ -124,14 +127,14 @@ impl Socket {
     /// Returns a handle to the packet sender which provides a thread-safe way to enqueue packets
     /// to be processed. This should be used when the socket is busy running its polling loop in a
     /// separate thread.
-    pub fn get_packet_sender(&self) -> Sender<Packet> {
+    pub fn get_packet_sender(&self) -> PacketSender {
         self.handler.event_sender().clone()
     }
 
     /// Returns a handle to the event receiver which provides a thread-safe way to retrieve events
     /// from the socket. This should be used when the socket is busy running its polling loop in
     /// a separate thread.
-    pub fn get_event_receiver(&self) -> Receiver<SocketEvent> {
+    pub fn get_event_receiver(&self) -> EventReceiver {
         self.handler.event_receiver().clone()
     }
 

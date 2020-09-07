@@ -6,7 +6,7 @@ pub use self::connection_manager::{ConnectionManager, DatagramSocket};
 pub use self::events::SocketEvent;
 pub use self::link_conditioner::LinkConditioner;
 pub use self::quality::{NetworkQuality, RttMeasurer};
-pub use self::socket::Socket;
+pub use self::socket::{Socket, PacketSender, EventReceiver};
 pub use self::virtual_connection::VirtualConnection;
 
 mod connection;
