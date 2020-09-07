@@ -199,7 +199,6 @@ impl<TSocket: DatagramSocket, TConnection: Connection> ConnectionManager<TSocket
     }
 
     /// Returns a number of active connections.
-    #[cfg(test)]
     pub fn connections_count(&self) -> usize {
         self.connections.len()
     }
